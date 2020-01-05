@@ -20,5 +20,15 @@ public class StringHelperTest {
 		assertEquals("CD",hepler.truncateAInFirst2Position("ACD"));
 	}
 
-
+	@Test
+	public void areFirstAndLastTwoCharactersTheSame_BasicNegactiveScenario() {
+		StringHelper hepler=new StringHelper();
+		assertFalse(hepler.areFirstAndLastTwoCharactersTheSame("ABCD"));
+	}
+	
+	@Test
+	public void areFirstAndLastTwoCharactersTheSame_BasicPositiveScenario() {
+		StringHelper hepler=new StringHelper();
+		assertTrue(hepler.areFirstAndLastTwoCharactersTheSame("ABAB"));
+	}
 }
