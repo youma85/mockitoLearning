@@ -12,4 +12,9 @@ public class TodoServiceStub implements TodoService {
 				"Learn Angular");
 	}
 
+	public void deleteTodo(String todo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
