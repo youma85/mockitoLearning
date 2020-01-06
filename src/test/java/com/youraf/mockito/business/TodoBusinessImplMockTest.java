@@ -1,6 +1,9 @@
 package com.youraf.mockito.business;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -49,6 +52,25 @@ public class TodoBusinessImplMockTest {
 		List<String> filteredTodos = todoBusinessImpl
 				.retrieveTodosRelatedToSpring("Youraf");
 		assertEquals(0, filteredTodos.size());
+	}
+	
+	@Test
+	public void retrieveTodosRelatedToSpring_usingBDD() {
+		// Given : Setup
+		TodoService todoServiceMock = mock(TodoService.class);
+		
+		List<String> todos=Arrays.asList("Learn Spring MVC", "Learn Spring",
+				"Learn Angular");
+		
+		given(todoServiceMock.retrieveTodos("Youraf")).willReturn(todos);
+		
+		TodoBusinessImpl todoBusinessImpl = new TodoBusinessImpl(todoServiceMock);
+		// When : method call
+		List<String> filteredTodos = todoBusinessImpl.retrieveTodosRelatedToSpring("Youraf");
+
+		// Then : asserts
+		// assert that dont accept literal value
+		assertThat(filteredTodos.size(), is(2));
 	}
 
 }
